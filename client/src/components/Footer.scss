@@ -1,0 +1,43 @@
+.footer__container {
+    display: flex; 
+    background-color: black; 
+    color: #fff; 
+}
+
+.footer__left {
+    flex: 1; 
+    margin: 10px; 
+    padding: 10px; 
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+
+    h1 {
+        font-size: 14px; 
+    }
+
+    @media screen and (max-width: 768px) {
+        flex: 6
+    }
+}
+
+.footer__right {
+    flex: 1; 
+    margin: 10px; 
+    padding: 10px; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+
+    a {
+        color: inherit; 
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        
+        svg {
+            width: 25px; 
+            height: 25px; 
+        }
+    }
+}
