@@ -1,0 +1,55 @@
+.menu {
+    width: 250px; 
+    height: 100vh; 
+    background-color: var(--raisin-black); 
+    position: fixed; 
+    top: 0; 
+    left: -250px; 
+    z-index: 2; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    transition: all 0.5s ease-in-out; 
+
+    @media screen and(max-width: 768px) {
+        width: 180px; 
+        left: -180px; // not necessary since left -250px covers, but keep it for reference
+    }
+
+    @media screen and(max-width: 480px) {
+        width: 130px; 
+        left: -130px; // not necessary since left -250px covers, but keep it for reference
+    }
+
+    &.active {
+        left: 0; 
+    }
+
+    ul {
+        margin: 0; 
+        padding: 0; 
+        list-style: none; 
+        font-size: 26px; 
+        font-weight: 100; 
+        color: var(--alice-blue); 
+        width: 60%; 
+
+        li {
+
+            a {
+                font-size: inherit; 
+                color: inherit; 
+                text-decoration: none; 
+
+                @media screen and(max-width: 768px) {
+                    font-size: 20px; 
+                }
+            }
+
+            &:hover {
+                font-weight: 500; 
+            }
+        }
+    }
+}

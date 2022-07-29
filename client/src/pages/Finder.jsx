@@ -1,9 +1,10 @@
-import { Navbar, Form, Footer } from "../components/index"; 
+import { Navbar, Menu, Form } from "../components/index"; 
 
-const Finder = () => {
+const Finder = ({ menuOpen, setMenuOpen }) => {
     return (
         <div>
-            <Navbar />
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <Form />
         </div>
     )

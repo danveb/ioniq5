@@ -1,9 +1,10 @@
-import { Navbar, Hero, Footer } from "../components"
+import { Navbar, Menu, Hero, Footer } from "../components"
 
-const Home = () => {
+const Home = ({ menuOpen, setMenuOpen }) => {
     return (
         <div>
-            <Navbar />
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <Hero />
             <Footer />
         </div>
