@@ -1,0 +1,60 @@
+.vehicle-list {
+    margin: 50px 200px; 
+    
+    @media screen and(max-width: 1024px) {
+        margin: 50px 180px; 
+    }
+    @media screen and(max-width: 768px) {
+        margin: 30px 80px; 
+    }
+    @media screen and(max-width: 480px) {
+        margin: 20px 40px; 
+    }
+
+    h3 {
+        margin: 15px;
+        text-align: center;
+        color: var(--alice-blue); 
+        font-size: 16px; 
+
+        @media screen and(max-width: 768px) {
+            font-size: 14px; 
+        }
+
+        @media screen and(max-width: 480px) {
+            font-size: 12px; 
+        }
+    }
+
+    .container {
+        overflow-x: auto;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 40px;
+        padding: 10px;
+        background-color: var(--alice-blue); 
+        
+        tr {
+            height: 30px !important;
+            font-family: "Poppins", sans-serif; 
+        }
+          
+        th {
+            max-width: 120px;
+            min-width: 100px;
+            padding: 0 !important;
+            overflow-x: auto;
+            white-space: nowrap;
+            text-align: center !important;
+            font-family: inherit; 
+        }
+          
+        td {
+            font-size: 13px; 
+            height: 10px !important;
+            padding: 5px !important;
+            text-align: center !important;
+            font-family: inherit; 
+        }
+    }
+}

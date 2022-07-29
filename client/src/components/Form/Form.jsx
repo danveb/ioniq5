@@ -1,39 +1,44 @@
 import { useState } from "react";
+import VehicleList from "../VehicleList/VehicleList"; 
+import Spinner from "../Spinner/Spinner";
 import axios from "axios"; 
-import VehicleList from "./VehicleList"; 
-import { getExteriorColor, getInteriorColor, getDriveTrain, getDeliveryDate } from "../constants/data"; 
+import { getExteriorColor, getInteriorColor, getDriveTrain, getDeliveryDate } from "../../constants/data"; 
 import "./Form.scss"; 
 
 const Form = () => {
-    const [cars, setCars] = useState([])
+    const [loading, setLoading] = useState(false); 
+    const [cars, setCars] = useState([]);
 
     const [formData, setFormData] = useState({
         year: "2022", 
         model: "ioniq5", 
         zip: "", 
         radius: ""
-    })
+    });
 
-    const { year, model, zip, radius } = formData
+    const { year, model, zip, radius } = formData;
 
     const handleChange = (e) => {
         setFormData((prevState) => ({
             ...prevState, 
             [e.target.name]: e.target.value
-        }))    
-    }
+        }));
+    };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        await getAllVehicles()
-    }
+        e.preventDefault();
+        await getAllVehicles();
+    };
 
     async function getAllVehicles() {
         // initialize vehicles array to hold all data from API 
         const vehicles = []
 
+        // setLoading is working 
+        setLoading(true); 
+
         // axios GET hit endpoint 
-        const response = await axios.get('https://ioniq5-backend.herokuapp.com/finder', { params: { zip: formData.zip, year: formData.year, model: formData.model, radius: formData.radius } })
+        const response = await axios.get("https://ioniq5-backend.herokuapp.com/finder", { params: { zip: formData.zip, year: formData.year, model: formData.model, radius: formData.radius } } ); 
 
         // iterate response object and push to vehicles array
         for (let info of response.data) {
@@ -52,14 +57,14 @@ const Form = () => {
                                 deliveryDate: getDeliveryDate(vehicle.PlannedDeliveryDate), 
                                 distance: dealer.distance
                             });
-                        }
-                    }
-                }
-            }
-        }
-        setCars(vehicles)
-        return vehicles
-    }
+                        };
+                    };
+                };
+            };
+        };
+        setLoading(false);
+        setCars(vehicles);
+    };
 
     return (
         <>
@@ -91,6 +96,7 @@ const Form = () => {
                         name="zip"
                         value={zip}
                         placeholder="5-digit Zip"
+                        required
                         onChange={handleChange}
                     />
                     </div>
@@ -103,6 +109,7 @@ const Form = () => {
                         name="radius"
                         value={radius}
                         placeholder="Radius"
+                        required
                         onChange={handleChange}
                     />
                     </div>
@@ -114,7 +121,9 @@ const Form = () => {
                 </form>
             </div>
         </div>
-        { cars.length === 0 ? "" : <VehicleList cars={cars} /> }
+        { loading ? <Spinner /> : (
+            <VehicleList cars={cars} />
+        )}
         </>
     )
 }
