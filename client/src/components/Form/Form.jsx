@@ -10,7 +10,7 @@ const Form = () => {
     const [cars, setCars] = useState([]);
 
     const [formData, setFormData] = useState({
-        year: "2022", 
+        year: "2023", 
         model: "ioniq5", 
         zip: "", 
         radius: ""
@@ -38,7 +38,7 @@ const Form = () => {
         setLoading(true); 
 
         // axios GET hit endpoint 
-        const response = await axios.get("https://ioniq5-backend.herokuapp.com/finder", { params: { zip: formData.zip, year: formData.year, model: formData.model, radius: formData.radius } } ); 
+        const response = await axios.get(process.env.REACT_APP_API_URL, { params: { zip: formData.zip, year: formData.year, model: formData.model, radius: formData.radius } } ); 
 
         // iterate response object and push to vehicles array
         for (let info of response.data) {
@@ -76,7 +76,7 @@ const Form = () => {
                         Select Year
                     </label>
                     <select>
-                        <option value={year}>2022</option>
+                        <option value={year}>2023</option>
                     </select>
                     </div>
                     <div className="form-group">
